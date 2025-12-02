@@ -13,23 +13,32 @@ let bowling = {
             for (i = 0; i < 10; i++) {
                 player.scores.push(Math.floor(Math.random() * (10 - 1 + 1) + 1));
             }
-            console.log(player.scores);
-        })
-        // let score = 0;
-        // finalScore = this.players.scores.reduce((acc, score) => acc + score, score)
+            console.log(player);
+        });
     },
 
-    addPlayer: function (name) {
-        let newP = { name: nome, scores: []};
+    addPlayer: function (nome) {
+        let newP = { name: nome, scores: [] };
         for (i = 0; i < 10; i++) {
-                newP.scores.push(Math.floor(Math.random() * (10 - 1 + 1) + 1));
-            }
+            newP.scores.push(Math.floor(Math.random() * (10 - 1 + 1) + 1));
+        }
         this.players.push(newP);
-        console.log(newP.scores);
-        
+        this.players.forEach(player => {
+            console.log(player);
+        });
+    },
+
+    finalScore: function () {
+        this.players.forEach(player => {
+            let finalScore = player.scores.reduce((acc, score) => acc + score);
+            player.tot = finalScore;
+        })
+        this.players.sort((a, b) => b.tot - a.tot);
+        console.log(`${bowling.players.name}: punteggio ${player.tot}`);
     }
-}
+};
 
 bowling.punteggio();
-bowling.addPlayer(`Ciccio`);
+// bowling.addPlayer(`Ciccio`);
+bowling.finalScore();
 
